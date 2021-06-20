@@ -15,7 +15,7 @@ Avant tous, il est nécessaire de compiler l'entièreté des fichiers, pour cela
 
 # Documentation des fonctions
 
-main.c
+# main.c
 
 • int main(void)
 
