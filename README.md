@@ -23,6 +23,7 @@ sortie : (entier)
 
 Permet le choix du type de cryptographie ainsi que le fait de choisir s'il l'on veut coder ou decoder notre message
 
+# cesard.c
 
 • void Dechiffragecesard(char* code)
 
@@ -37,6 +38,7 @@ entrée :  (chaine) chaine de caractère, (entier) nombre de décalage à appliq
 
 Permet de coder une chaîne de caractère, toute en nous donnant le nombre de décalage, à l'aide de la fonction ChiffrementCesard
 
+# vigenere.c
 
 • void VigenereCryp(char* code, char* clef)
 
@@ -80,6 +82,7 @@ sortie : (entier) Valeur Crypté
 
 Permet d'obtenir la valeur décrypté du message
 
+# saisieDuTxt.c
 
 • bool saisieLigne(char* code, size_t taille)
 
