@@ -26,6 +26,7 @@
 #include <malloc.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <ctype.h>
 #define tailleMaxCode 1000
 #define tailleMaxClef 100
 
@@ -85,7 +86,7 @@ int main(void) {
         /*Saisie de la clef*/
         printf("Choisis la clef pour vigenere\n");
         saisieLigne(clef, sizeof(clef));
-        VigenereCryp(code, clef)
+        VigenereCryp(code, clef);
     }
     printf("FIN");
     return 0;
@@ -105,7 +106,11 @@ void Dechiffragecesard(char* code) {
 
     taille = strlen(code);
     c = 0;
-
+    for (i=0;i<= taille ; i++){
+        if (code[i]>= 65 && code[i]<= 90 ){
+            code[i]= tolower(code[i]);
+      }
+    }
     /* La boucle for ici permet de faire tout les callages de toutes les lettres de l'alphabet*/
     for (i = 0; i <= 25; i++) {
         c = 0;
@@ -115,7 +120,7 @@ void Dechiffragecesard(char* code) {
         /* Boucle while nous permettant de passer toutes les lettres de notres code que l'on souhaite decrypter/crypter */
         while (c <= taille - 1) {
             /* Verification du char espace pour eviter un probleme de modification de ce dernier*/
-            if (code[c] == ' ') {
+            if ((code[c] >= 33 && code[c] <= 47) || (code[c] >= 58 && code[c] <= 64 ) || (code[c] >= 91 && code[c] <= 96 ) || code[c]==' ') {
                 ChaineTempo[c] = ' ';
                 /* On incremente de 1 pour eviter d'avoir une boucle infinie*/
                 c++;
@@ -151,6 +156,11 @@ void ChiffrementCesard(char* code, int* decallage) {
 
     c = 0;
     j = 0;
+    for (i=0;i<= taille ; i++){
+        if (code[i]>= 65 && code[i]<= 90 ){
+            code[i]= tolower(code[i]);
+      }
+    }
     /* Verification que le decalage est bien entre 0 et 26 si ce n'est pas le cas on trouve le decallage a l'aide d'un modulo*/
     while (decallage[0] > 26 || decallage[0] <= 0) {
         decallage[0] %= 26;
@@ -158,7 +168,7 @@ void ChiffrementCesard(char* code, int* decallage) {
     /* Boucle while nous permettant de passer toutes les lettres de notres code que l'on souhaite decrypter/crypter */
     while (c <= taille - 1) {
         /* Verification du char espace pour eviter un probleme de modification de ce dernier*/
-        if (code[c] == ' ') {
+        if ((code[c] >= 33 && code[c] <= 47) || (code[c] >= 58 && code[c] <= 64 ) || (code[c] >= 91 && code[c] <= 96 ) || code[c]==' ') {
             ChaineTempo[c] = ' ';
 
             c++;
@@ -181,12 +191,25 @@ void ChiffrementCesard(char* code, int* decallage) {
 
 /*Fonction vigenere permetant de crypter ou de decrypter a l'aide d'une clef fournis par l'utilisateur*/
 void VigenereCryp(char* code, char* clef) {
-    int valeurLettreCode[tailleMaxCode], valeurLettreClef[tailleMaxCode], valeurMsgDecode[tailleMaxCode], tailleCode, i, j, c, tailleClef, f = 0,o;
+    int valeurLettreCode[tailleMaxCode], valeurLettreClef[tailleMaxCode], valeurMsgDecode[tailleMaxCode],  i, j, c, f = 0,o;
 
     char alphabet[] = "abcdefghijklmnopqrstuvwxyz", Msg[strlen(code)],choix[5],valide[]="01";
     /*Affectation de la valeur de la lettre pour chaque lettre du code*/
+    for (i=0;i<= strlen(code) ; i++){
+        if (code[i]>= 65 && code[i]<= 90 ){
+            code[i]= tolower(code[i]);
+      }
+    }
+
+    for (i=0;i<= strlen(clef) ; i++){
+        if (clef[i]>= 65 && clef[i]<= 90 ){
+            clef[i]= tolower(clef[i]);
+      }
+    }
+
+    
     for (i = 0; i <= strlen(code) - 1; i++) {
-        printf("Valeur de i = %d\n", i);
+        
         valeurLettreCode[i] = getValeurLettreCode(code, i);
 
     }
